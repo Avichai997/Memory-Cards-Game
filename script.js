@@ -17,6 +17,17 @@ let disableDeck = false;
 let isPlaying = false;
 let cardOne, cardTwo, timer;
 
+const createCard = (index) => {
+  return `<div class="card">
+        <div class="view front-view">
+          <img src="images/que_icon.svg" alt="icon" />
+        </div>
+        <div class="view back-view">
+          <img src="images/img-${index}.png" alt="card-img" />
+        </div>
+      </div>`;
+};
+
 playerInfoForm.addEventListener("submit", (event) => {
   event.preventDefault();
   playerName = playerNameInput.value.trim();
