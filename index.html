@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <dialog id="gameDialog">
+    <dialog open id="gameDialog">
       <form method="dialog" id="playerInfoForm" autocomplete="on">
         <div class="welcomeDialog">
           <label for="playerNameInput">Player name:</label>
@@ -34,112 +34,15 @@
       </form>
     </dialog>
 
-    <div class="cards">
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-1.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-2.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-3.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-4.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-5.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-6.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-5.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-6.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-1.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-2.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-3.png" alt="card-img" />
-        </div>
-      </div>
-      <div class="card">
-        <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
-        </div>
-        <div class="view back-view">
-          <img src="images/img-4.png" alt="card-img" />
-        </div>
-      </div>
-    </div>
+    <div class="cards"></div>
 
     <div class="footer">
       <div class="details">
-        <p class="flips">
+        <p>
           Player name: <span><b id="playerName"></b></span>
         </p>
 
-        <p class="flips">
+        <p>
           Cards number: <span><b id="cardsNumber">30</b></span>
         </p>
       </div>
@@ -150,6 +53,12 @@
         </p>
         <p class="flips">
           Flips: <span><b>0</b></span>
+        </p>
+        <p class="mistakes">
+          Mistakes: <span><b>0</b></span>
+        </p>
+        <p class="matched">
+          Matched: <span><b>0</b></span>
         </p>
         <button>Refresh</button>
       </div>

@@ -1,6 +1,8 @@
-const cards = document.querySelectorAll(".card"),
+const cardsContainer = document.getElementsByClassName("cards")[0],
   timeTag = document.querySelector(".time b"),
   flipsTag = document.querySelector(".flips b"),
+  mistakesTag = document.querySelector(".mistakes b"),
+  matchedTag = document.querySelector(".matched b"),
   refreshBtn = document.querySelector(".details button"),
   dialog = document.getElementById("gameDialog"),
   playerInfoForm = document.getElementById("playerInfoForm"),
@@ -8,10 +10,10 @@ const cards = document.querySelectorAll(".card"),
   cardsNumberInput = document.querySelector("#cardsNumberInput");
 
 let playerName = 0;
-let playerCardsNumber = 0;
-const MIN_CARDS = 30;
+let playerCardsNumber = 30;
 let playTime = 0;
 let flips = 0;
+let mistakes = 0;
 let matchedCard = 0;
 let disableDeck = false;
 let isPlaying = false;
@@ -20,10 +22,10 @@ let cardOne, cardTwo, timer;
 const createCard = (index) => {
   return `<div class="card">
         <div class="view front-view">
-          <img src="images/que_icon.svg" alt="icon" />
+          <img src="images/que_icon.svg"/>
         </div>
         <div class="view back-view">
-          <img src="images/img-${index}.png" alt="card-img" />
+          <img src="images/gem-${index}.png"/>
         </div>
       </div>`;
 };
@@ -36,16 +38,12 @@ playerInfoForm.addEventListener("submit", (event) => {
 
   document.getElementById("playerName").textContent = playerName;
   document.getElementById("cardsNumber").textContent = playerCardsNumber;
-
+  shuffleCard();
   dialog.close();
 });
 
 function initTimer() {
-  //   if (playTime >= 0) {
-  //     return clearInterval(timer);
-  //   }
-  playTime++;
-  timeTag.innerText = playTime;
+  timeTag.innerText = ++playTime;
 }
 
 function flipCard({ target: clickedCard }) {
@@ -71,7 +69,8 @@ function flipCard({ target: clickedCard }) {
 function matchCards(img1, img2) {
   if (img1 === img2) {
     matchedCard++;
-    if (matchedCard == 6) {
+    matchedTag.innerText = matchedCard;
+    if (matchedCard == playerCardsNumber / 2) {
       return clearInterval(timer);
     }
     cardOne.removeEventListener("click", flipCard);
@@ -94,30 +93,38 @@ function matchCards(img1, img2) {
 }
 
 function shuffleCard() {
-  flips = matchedCard = 0;
+  // 1) reset variables
+  flips = matchedCard = flips = mistakes = playTime = 0;
   cardOne = cardTwo = "";
   clearInterval(timer);
   timeTag.innerText = playTime;
   flipsTag.innerText = flips;
+  mistakesTag.innerText = mistakes;
+  matchedTag.innerText = matchedCard;
   disableDeck = isPlaying = false;
 
-  let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+  // 2) create cards
+  cardsContainer.innerHTML = "";
+  for (let i = 1; i <= playerCardsNumber; i++)
+    cardsContainer.insertAdjacentHTML("beforeend", createCard(i));
+
+  // 3) shuffle cards
+  let arr = [];
+  for (let i = 1; i <= playerCardsNumber / 2; i++) arr.push(i);
+  for (let i = 1; i <= playerCardsNumber / 2; i++) arr.push(i);
+
   arr.sort(() => (Math.random() > 0.5 ? 1 : -1));
+
+  const cards = document.querySelectorAll(".card");
 
   cards.forEach((card, index) => {
     card.classList.remove("flip");
     let imgTag = card.querySelector(".back-view img");
     setTimeout(() => {
-      imgTag.src = `images/img-${arr[index]}.png`;
+      imgTag.src = `images/gem-${arr[index]}.png`;
     }, 500);
     card.addEventListener("click", flipCard);
   });
 }
 
-shuffleCard();
-
 refreshBtn.addEventListener("click", shuffleCard);
-
-cards.forEach((card) => {
-  card.addEventListener("click", flipCard);
-});
