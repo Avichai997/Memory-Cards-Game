@@ -23,10 +23,11 @@ playerInfoForm.addEventListener("submit", (event) => {
   playerCardsNumber = +cardsNumberInput.value;
   if (playerName === "") return alert(`Player name can't be empty!`);
 
-    document.getElementById("playerName");
-    document.getElementById("cardsNumber");
+  document.getElementById("playerName").textContent = playerName;
+  document.getElementById("cardsNumber").textContent = playerCardsNumber;
+
   dialog.close();
-}); 
+});
 
 function initTimer() {
   //   if (playTime >= 0) {

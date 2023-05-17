@@ -13,19 +13,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  flex-direction: column;
+  /* min-height: 100vh; */
   background: #6563ff;
 }
 ::selection {
   color: #fff;
   background: #6563ff;
 }
-.wrapper {
-  padding: 25px;
-  background: #f8f8f8;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+
 .cards,
 .card,
 .view,
@@ -35,19 +31,26 @@ p {
   align-items: center;
   justify-content: center;
 }
+
 .cards {
-  height: 350px;
-  width: 350px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  padding: 25px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  margin: 0 auto;
+  display: grid;
+  gap: 13px;
+  background-color: white;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
-.cards .card {
+.card {
   cursor: pointer;
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
-  height: calc(100% / 4 - 10px);
-  width: calc(100% / 4 - 10px);
+  width: 90px;
+  height: 90px;
 }
 .card.shake {
   animation: shake 0.35s ease-in-out;
@@ -99,8 +102,7 @@ p {
 }
 
 .details {
-  width: 100%;
-  margin-top: 15px;
+  margin-bottom: 10px;
   padding: 0 20px;
   border-radius: 7px;
   background: #fff;
@@ -135,7 +137,7 @@ p {
   background: #6563ff;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
   .cards {
     height: 350px;
     width: 350px;
@@ -146,9 +148,9 @@ p {
   .card .back-view img {
     max-width: 40px;
   }
-}
+} */
 
-@media screen and (max-width: 530px) {
+/* @media screen and (max-width: 530px) {
   .cards {
     height: 300px;
     width: 300px;
@@ -173,7 +175,7 @@ p {
     color: #fff;
     background: #6563ff;
   }
-}
+} */
 
 dialog {
   z-index: 10;
@@ -210,4 +212,12 @@ dialog::backdrop {
 input[type="text"],
 input[type="number"] {
   text-align: center;
+}
+
+.footer {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
