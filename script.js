@@ -1,8 +1,15 @@
 const cards = document.querySelectorAll(".card"),
   timeTag = document.querySelector(".time b"),
   flipsTag = document.querySelector(".flips b"),
-  refreshBtn = document.querySelector(".details button");
+  refreshBtn = document.querySelector(".details button"),
+  dialog = document.getElementById("gameDialog"),
+  playerInfoForm = document.getElementById("playerInfoForm"),
+  playerNameInput = document.querySelector("#playerNameInput"),
+  cardsNumberInput = document.querySelector("#cardsNumberInput");
 
+let playerName = 0;
+let playerCardsNumber = 0;
+const MIN_CARDS = 30;
 let playTime = 0;
 let flips = 0;
 let matchedCard = 0;
@@ -10,10 +17,21 @@ let disableDeck = false;
 let isPlaying = false;
 let cardOne, cardTwo, timer;
 
+playerInfoForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  playerName = playerNameInput.value.trim();
+  playerCardsNumber = +cardsNumberInput.value;
+  if (playerName === "") return alert(`Player name can't be empty!`);
+
+    document.getElementById("playerName");
+    document.getElementById("cardsNumber");
+  dialog.close();
+}); 
+
 function initTimer() {
-//   if (playTime >= 0) {
-//     return clearInterval(timer);
-//   }
+  //   if (playTime >= 0) {
+  //     return clearInterval(timer);
+  //   }
   playTime++;
   timeTag.innerText = playTime;
 }
