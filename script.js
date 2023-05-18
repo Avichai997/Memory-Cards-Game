@@ -55,9 +55,8 @@ function flipCard({ target: clickedCard }) {
     flips++;
     flipsTag.innerText = flips;
     clickedCard.classList.add("flip");
-    if (!cardOne) {
-      return (cardOne = clickedCard);
-    }
+    if (!cardOne) return (cardOne = clickedCard);
+
     cardTwo = clickedCard;
     disableDeck = true;
     let cardOneImg = cardOne.querySelector(".back-view img").src,
@@ -70,14 +69,17 @@ function matchCards(img1, img2) {
   if (img1 === img2) {
     matchedCard++;
     matchedTag.innerText = matchedCard;
-    if (matchedCard == playerCardsNumber / 2) {
-      return clearInterval(timer);
-    }
+    if (matchedCard === playerCardsNumber / 2) return clearInterval(timer);
+
     cardOne.removeEventListener("click", flipCard);
     cardTwo.removeEventListener("click", flipCard);
     cardOne = cardTwo = "";
     return (disableDeck = false);
   }
+
+  // cards are not the same
+  mistakes++;
+  mistakesTag.innerText = mistakes;
 
   setTimeout(() => {
     cardOne.classList.add("shake");
@@ -127,4 +129,7 @@ function shuffleCard() {
   });
 }
 
-refreshBtn.addEventListener("click", shuffleCard);
+refreshBtn.addEventListener("click", () => dialog.showModal());
+
+dialog.showModal();
+  

@@ -8,10 +8,10 @@
   </head>
 
   <body>
-    <dialog open id="gameDialog">
+    <dialog id="gameDialog">
       <form method="dialog" id="playerInfoForm" autocomplete="on">
         <div class="welcomeDialog">
-          <label for="playerNameInput">Player name:</label>
+          <label for="playerNameInput">Enter your name:</label>
           <input
             class="inputDialog"
             id="playerNameInput"
@@ -19,17 +19,19 @@
             value="Avichai"
             type="text"
           />
-          <label for="cardsNumberInput">Cards number:</label>
+          <label for="cardsNumberInput">Enter cards number: (30-60 max)</label>
           <input
             class="inputDialog"
             id="cardsNumberInput"
             placeholder="Cards number (min 30)"
             min="30"
+            max="60"
             step="2"
             value="30"
             type="number"
           />
-          <button class="submitDialog" type="submit">Submit</button>
+
+          <button class="submitDialog" type="submit">Lets Play!</button>
         </div>
       </form>
     </dialog>
@@ -49,7 +51,7 @@
 
       <div class="details">
         <p class="time">
-          Time: <span><b>20</b>s</span>
+          Time: <span><b>0</b>s</span>
         </p>
         <p class="flips">
           Flips: <span><b>0</b></span>
