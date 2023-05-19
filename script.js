@@ -1,3 +1,4 @@
+// Avichai Iluz 208626234 & Aviv Ariel 316097294
 const cardsContainer = document.getElementsByClassName("cards")[0],
   timeTag = document.querySelector(".time b"),
   playTimeTag = document.querySelector(".playTime b"),
