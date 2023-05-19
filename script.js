@@ -11,7 +11,7 @@ const cardsContainer = document.getElementsByClassName("cards")[0],
 
 let playerName = 0;
 let playerCardsNumber = 30;
-let playTime = 0;
+let timeLeft = 0;
 let flips = 0;
 let mistakes = 0;
 let matchedCard = 0;
@@ -43,7 +43,9 @@ playerInfoForm.addEventListener("submit", (event) => {
 });
 
 function initTimer() {
-  timeTag.innerText = ++playTime;
+  if (timeLeft <= 0) return clearInterval(timer);
+
+  timeTag.innerText = --timeLeft;
 }
 
 function flipCard({ target: clickedCard }) {
@@ -51,7 +53,7 @@ function flipCard({ target: clickedCard }) {
     isPlaying = true;
     timer = setInterval(initTimer, 1000);
   }
-  if (clickedCard !== cardOne && !disableDeck) {
+  if (clickedCard !== cardOne && !disableDeck && timeLeft > 0) {
     flips++;
     flipsTag.innerText = flips;
     clickedCard.classList.add("flip");
@@ -62,6 +64,8 @@ function flipCard({ target: clickedCard }) {
     let cardOneImg = cardOne.querySelector(".back-view img").src,
       cardTwoImg = cardTwo.querySelector(".back-view img").src;
     matchCards(cardOneImg, cardTwoImg);
+  } else if (timeLeft <= 0) {
+    alert("Game over !");
   }
 }
 
@@ -69,7 +73,11 @@ function matchCards(img1, img2) {
   if (img1 === img2) {
     matchedCard++;
     matchedTag.innerText = matchedCard;
-    if (matchedCard === playerCardsNumber / 2) return clearInterval(timer);
+    // win !
+    if (matchedCard === playerCardsNumber / 2) {
+      alert("you win!");
+      return clearInterval(timer);
+    }
 
     cardOne.removeEventListener("click", flipCard);
     cardTwo.removeEventListener("click", flipCard);
@@ -96,10 +104,11 @@ function matchCards(img1, img2) {
 
 function shuffleCard() {
   // 1) reset variables
-  flips = matchedCard = flips = mistakes = playTime = 0;
+  flips = matchedCard = flips = mistakes = 0;
+  timeLeft = playerCardsNumber * 2.5;
   cardOne = cardTwo = "";
   clearInterval(timer);
-  timeTag.innerText = playTime;
+  timeTag.innerText = timeLeft;
   flipsTag.innerText = flips;
   mistakesTag.innerText = mistakes;
   matchedTag.innerText = matchedCard;
@@ -131,5 +140,4 @@ function shuffleCard() {
 
 refreshBtn.addEventListener("click", () => dialog.showModal());
 
-dialog.showModal();
-  
+// dialog.showModal();
