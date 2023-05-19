@@ -140,4 +140,4 @@ function shuffleCard() {
 
 refreshBtn.addEventListener("click", () => dialog.showModal());
 
-// dialog.showModal();
+dialog.showModal();
