@@ -15,6 +15,13 @@ body {
   flex-direction: column;
   background: #6563ff;
 }
+.title {
+  color: white;
+  padding: 0px 30px;
+}
+.title h1 {
+  text-align: center;
+}
 .cards,
 .card,
 .view,
@@ -124,18 +131,18 @@ p {
   transform: rotateY(0);
 }
 .details {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding: 0 20px;
   border-radius: 7px;
   background: #fff;
-  height: 60px;
+  height: 50px;
   max-width: 600px;
   justify-content: space-between;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
 }
 .details p {
-  font-size: 18px;
+  font-size: 15px;
   height: 17px;
   padding: 0px 6px;
   border-right: 1px solid #ccc;

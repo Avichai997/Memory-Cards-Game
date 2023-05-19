@@ -1,5 +1,6 @@
 const cardsContainer = document.getElementsByClassName("cards")[0],
   timeTag = document.querySelector(".time b"),
+  playTimeTag = document.querySelector(".playTime b"),
   flipsTag = document.querySelector(".flips b"),
   mistakesTag = document.querySelector(".mistakes b"),
   matchedTag = document.querySelector(".matched b"),
@@ -12,6 +13,7 @@ const cardsContainer = document.getElementsByClassName("cards")[0],
 let playerName = 0;
 let playerCardsNumber = 30;
 let timeLeft = 0;
+let timePlayed = 0;
 let flips = 0;
 let mistakes = 0;
 let matchedCard = 0;
@@ -46,6 +48,7 @@ function initTimer() {
   if (timeLeft <= 0) return clearInterval(timer);
 
   timeTag.innerText = --timeLeft;
+  playTimeTag.innerText = ++timePlayed;
 }
 
 function flipCard({ target: clickedCard }) {
@@ -75,7 +78,7 @@ function matchCards(img1, img2) {
     matchedTag.innerText = matchedCard;
     // win !
     if (matchedCard === playerCardsNumber / 2) {
-      alert("you win!");
+      setTimeout(() => alert(`you win!\nYou played for ${timePlayed}s`), 400);
       return clearInterval(timer);
     }
 
@@ -104,11 +107,12 @@ function matchCards(img1, img2) {
 
 function shuffleCard() {
   // 1) reset variables
-  flips = matchedCard = flips = mistakes = 0;
+  flips = matchedCard = flips = mistakes = timePlayed = 0;
   timeLeft = playerCardsNumber * 2.5;
   cardOne = cardTwo = "";
   clearInterval(timer);
   timeTag.innerText = timeLeft;
+  playTimeTag.innerText = timePlayed;
   flipsTag.innerText = flips;
   mistakesTag.innerText = mistakes;
   matchedTag.innerText = matchedCard;
